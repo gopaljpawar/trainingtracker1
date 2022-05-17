@@ -1,0 +1,14 @@
+package com.hcl.employee_management.serviceimpl;
+
+import com.hcl.employee_management.domain.Employee;
+import com.hcl.employee_management.service.EmployeeService;
+
+public class EmployeeSeviceimpl implements EmployeeService {
+
+	@Override
+	public Employee getEmployee(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

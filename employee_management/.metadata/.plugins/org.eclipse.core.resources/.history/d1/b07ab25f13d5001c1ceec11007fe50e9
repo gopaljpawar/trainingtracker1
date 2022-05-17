@@ -1,0 +1,5 @@
+package com.hcl.employee_management.domain;
+
+public class Contact {
+
+}
