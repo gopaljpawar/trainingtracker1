@@ -1,0 +1,100 @@
+package com.hcl.employee_management.domain;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+public class Employee {
+	private Long id;
+	private String employeeName;
+	private String department;
+	private String designation;
+	private String phonenumber;
+	@JsonFormat(pattern="dd/mm/yyyy")
+	private Date DOJ;
+	
+	private List<Contact> contacts = new ArrayList<>();
+
+	public Employee(Long id, String employeeName, String department, String designation, String phonenumber, Date dOJ,
+			List<Contact> contacts) {
+		super();
+		this.id = id;
+		this.employeeName = employeeName;
+		this.department = department;
+		this.designation = designation;
+		this.phonenumber = phonenumber;
+		DOJ = dOJ;
+		this.contacts = contacts;
+	}
+
+	public Employee(Long id, String employeeName, String department, String designation, String phonenumber, Date dOJ) {
+		super();
+		this.id = id;
+		this.employeeName = employeeName;
+		this.department = department;
+		this.designation = designation;
+		this.phonenumber = phonenumber;
+		DOJ = dOJ;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getEmployeeName() {
+		return employeeName;
+	}
+
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
+	}
+
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+
+	public String getDesignation() {
+		return designation;
+	}
+
+	public void setDesignation(String designation) {
+		this.designation = designation;
+	}
+
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+
+	public Date getDOJ() {
+		return DOJ;
+	}
+
+	public void setDOJ(Date dOJ) {
+		DOJ = dOJ;
+	}
+
+	public List<Contact> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(List<Contact> contacts) {
+		this.contacts = contacts;
+	}
+	
+	
+}
+
