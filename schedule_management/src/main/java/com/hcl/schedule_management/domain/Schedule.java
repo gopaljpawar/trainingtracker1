@@ -1,5 +1,7 @@
 package com.hcl.schedule_management.domain;
 
+
+
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -7,6 +9,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
+import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 @Entity
 public class Schedule {
@@ -14,8 +20,11 @@ public class Schedule {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotBlank(message = "Employee or Traineer Name Reqired")
 	private String name;
+	@JsonFormat
 	private Date scheduleDate;
+	@NotBlank(message = "description is required")
 	private String description;
 	
 //	private String batchName;			//from TM
@@ -85,14 +94,14 @@ public class Schedule {
 	public void setEnd_Date(Date end_Date) {
 		End_Date = end_Date;
 	}
-//	@PrePersist
-//	public void onCreated() {
-//		this.Started_Date= new Date();
-//			
-//	}
-//	@PrePersist
-//	public void onEnd() {
-//		this.End_Date= new Date();
-//	}
+	@PrePersist
+	public void onCreated() {
+		this.Started_Date= new Date();
+			
+	}
+//	@PostPersist
+	public void onEnd() {
+		this.End_Date= new Date();
+	}
 	
 }
