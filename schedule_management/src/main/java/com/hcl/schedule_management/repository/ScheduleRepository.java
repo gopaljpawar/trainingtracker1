@@ -8,6 +8,7 @@ import com.hcl.schedule_management.domain.Schedule;
 @Repository
 public interface ScheduleRepository  extends CrudRepository<Schedule, Long>{
 	
-
-
+Schedule findScheduleById(Long id);
+	
+	Iterable<Schedule> findAll();
 }
