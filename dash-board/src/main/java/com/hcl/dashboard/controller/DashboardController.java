@@ -39,7 +39,7 @@ public class DashboardController {
 	@GetMapping("/trainingstatus")
 	public String getTrainingStatus() {
 
-		return null;
+		return "Completed";
 
 	}
 
