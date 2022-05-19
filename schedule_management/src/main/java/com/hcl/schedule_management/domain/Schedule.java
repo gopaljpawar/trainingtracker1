@@ -2,7 +2,9 @@ package com.hcl.schedule_management.domain;
 
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,6 +35,8 @@ public class Schedule {
 	
 	private Date Started_Date;
 	private Date End_Date;
+	
+//	 List <Trainee> trainees = new ArrayList<Trainee>();
 		
 	public Schedule() {
 		super();

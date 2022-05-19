@@ -1,5 +1,7 @@
 package com.hcl.schedule_management.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +15,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.hcl.schedule_management.domain.Schedule;
+import com.hcl.schedule_management.domain.Trainee;
 import com.hcl.schedule_management.service.ScheduleService;
 import com.hcl.schedule_management.serviceimpl.MapValidationErrorService;
+
+import ch.qos.logback.core.status.Status;
 
 @RestController
 @RequestMapping("/api/schedules")
@@ -25,6 +31,10 @@ public class ScheduleController {
 	private ScheduleService scheduleService;
 	@Autowired
 	private MapValidationErrorService mapValidationErrorService;
+	
+	@Autowired
+	private RestTemplate restTemplate;
+	
 	
 	@PostMapping("")
 	public ResponseEntity<?> creatNewSchedule(@Valid @RequestBody Schedule schedule, BindingResult result){
@@ -42,8 +52,20 @@ public class ScheduleController {
 	}
 	
 	@GetMapping("/all")
-	public Iterable<Schedule> getAllSchedule(){
-		return scheduleService.findAllSchedule();
+	public Iterable<Trainee> getAllSchedule(){
+	//Trainee trainee = restTemplate.getForObject("http://localhost:9001/training/all" , Trainee.class);
+	
+//	Trainee trainee [] = this.restTemplate.getForObject("http://localhost:9001/training/all",
+//			Trainee[].class);
+	Iterable<Trainee> trainees=restTemplate.getForObject("http://localhost:9001/training/all", List.class);
+//	Trainee.setContact(contacts);
+	
+	
+	return trainees;
+		
+		//return scheduleService.findAllSchedule();
+		
+		
 	}
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteSchedule(@PathVariable Long id){

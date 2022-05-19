@@ -14,11 +14,11 @@ public class ScheduleManagementApplication {
 		SpringApplication.run(ScheduleManagementApplication.class, args);
 	}
 
-//	@Bean
+	@Bean
 //	@LoadBalanced
-//	public RestTemplate restTemplate() {
-//	return new RestTemplate();
-//	}
-//	
+	public RestTemplate restTemplate() {
+	return new RestTemplate();
+	}
+	
 	
 }
