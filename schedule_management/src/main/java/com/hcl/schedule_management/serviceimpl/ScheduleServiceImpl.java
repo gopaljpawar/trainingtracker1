@@ -41,8 +41,9 @@ public class ScheduleServiceImpl implements ScheduleService {
 		Schedule schedule= scheduleRepository.findScheduleById(id);
 		if(schedule==null) {
 			throw new ScheduleIdException("Schedule with ID :"+schedule.getId()+" is not found");
+			
 		}
-		
+		scheduleRepository.delete(schedule);
 	}
 
 }

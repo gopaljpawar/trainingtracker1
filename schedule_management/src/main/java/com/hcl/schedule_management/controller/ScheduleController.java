@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,11 +45,14 @@ public class ScheduleController {
 	public Iterable<Schedule> getAllSchedule(){
 		return scheduleService.findAllSchedule();
 	}
-	
+	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deleteSchedule(@PathVariable Long id){
 		scheduleService.deleteScheduleById(id);
 		return new ResponseEntity<String>("Schedule with id :"+ id +" deleted successfully", HttpStatus.OK);
 	}
-		
+	
+
+	
+	
 	
 }

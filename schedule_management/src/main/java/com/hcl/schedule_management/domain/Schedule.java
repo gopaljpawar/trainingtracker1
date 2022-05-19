@@ -28,7 +28,7 @@ public class Schedule {
 	private String description;
 	
 //	private String batchName;			//from TM
-//	private String batchIdentifier;		// from TM
+//	private String courseName;		// from TM
 //	private String Status;				// from TM
 	
 	private Date Started_Date;
