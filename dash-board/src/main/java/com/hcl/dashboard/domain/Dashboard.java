@@ -1,56 +1,116 @@
 package com.hcl.dashboard.domain;
 
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class Dashboard {
+	private Long id;
+	private String name;
+	private String type;
+	private String status;
+	private String phnno;
+	private String email;
+	private String trainername;
+	private String coursename;
+	private Float rating;
+	public Float getRating() {
+		return rating;
+	}
+	public Dashboard(Long id, String name, String type, String status, String phnno, String email, String trainername,
+			String coursename, Float rating, Long duration, Date startdate, Date enddate) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.type = type;
+		this.status = status;
+		this.phnno = phnno;
+		this.email = email;
+		this.trainername = trainername;
+		this.coursename = coursename;
+		this.rating = rating;
+		this.duration = duration;
+		this.startdate = startdate;
+		this.enddate = enddate;
+	}
+	public void setRating(Float rating) {
+		this.rating = rating;
+	}
+
+	private Long duration;
+	private Date startdate;
+	private Date enddate;
 	
-	private Long tottalNumberOFTrainigs;
-	private Long averagerating;
-	private Long totalhourstraining;
-	private Double budget;
-	private String trainingstatus;
-	private String trainingtype;
-	private Long monthlytrainingview;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getPhnno() {
+		return phnno;
+	}
+	public void setPhnno(String phnno) {
+		this.phnno = phnno;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getTrainername() {
+		return trainername;
+	}
+	public void setTrainername(String trainername) {
+		this.trainername = trainername;
+	}
+	public String getCoursename() {
+		return coursename;
+	}
+	public void setCoursename(String coursename) {
+		this.coursename = coursename;
+	}
 	
-	public Long getTottalNumberOFTrainigs() {
-		return tottalNumberOFTrainigs;
+	public Long getDuration() {
+		return duration;
 	}
-	public void setTottalNumberOFTrainigs(Long tottalNumberOFTrainigs) {
-		this.tottalNumberOFTrainigs = tottalNumberOFTrainigs;
+	public void setDuration(Long duration) {
+		this.duration = duration;
 	}
-	public Long getAveragerating() {
-		return averagerating;
+	public Date getStartdate() {
+		return startdate;
 	}
-	public void setAveragerating(Long averagerating) {
-		this.averagerating = averagerating;
+	public void setStartdate(Date startdate) {
+		this.startdate = startdate;
 	}
-	public Long getTotalhourstraining() {
-		return totalhourstraining;
+	public Date getEnddate() {
+		return enddate;
 	}
-	public void setTotalhourstraining(Long totalhourstraining) {
-		this.totalhourstraining = totalhourstraining;
+	public void setEnddate(Date enddate) {
+		this.enddate = enddate;
 	}
-	public Double getBudget() {
-		return budget;
-	}
-	public void setBudget(Double budget) {
-		this.budget = budget;
-	}
-	public String getTrainingstatus() {
-		return trainingstatus;
-	}
-	public void setTrainingstatus(String trainingstatus) {
-		this.trainingstatus = trainingstatus;
-	}
-	public String getTrainingtype() {
-		return trainingtype;
-	}
-	public void setTrainingtype(String trainingtype) {
-		this.trainingtype = trainingtype;
-	}
-	public Long getMonthlytrainingview() {
-		return monthlytrainingview;
-	}
-	public void setMonthlytrainingview(Long monthlytrainingview) {
-		this.monthlytrainingview = monthlytrainingview;
+		
+	public Dashboard() {
+		
 	}
 	
 }
