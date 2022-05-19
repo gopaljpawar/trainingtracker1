@@ -1,29 +1,38 @@
 package com.hcl.calendar_management.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Event {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	@NotBlank
-	private String tringBatchIdentifier;
+	
+	private String identifier;
+	private Long eventId;
 	private String description;
 	private Date start_Date;
 	private Date end_Date;
-	@ManyToOne(cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "calendar_id",referencedColumnName = "id")
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REFRESH)
+	@JoinColumn(name = "calendar_name")
+	@JsonIgnore
 	private Calendar calendar;
+   
 	
 	
 	public Event() {
@@ -37,7 +46,7 @@ public class Event {
 		super();
 		this.id = id;
 		this.name = name;
-		this.tringBatchIdentifier = tringBatchIdentifier;
+		this.identifier =identifier;
 		this.description = description;
 		this.start_Date = start_Date;
 		this.end_Date = end_Date;
@@ -65,13 +74,13 @@ public class Event {
 	}
 
 
-	public String getTringBatchIdentifier() {
-		return tringBatchIdentifier;
+	public String getIdentifier() {
+		return identifier;
 	}
 
 
-	public void setTringBatchIdentifier(String tringBatchIdentifier) {
-		this.tringBatchIdentifier = tringBatchIdentifier;
+	public void setIdentifier(String Identifier) {
+		this.identifier = identifier;
 	}
 
 
@@ -103,6 +112,44 @@ public class Event {
 	public void setEnd_Date(Date end_Date) {
 		this.end_Date = end_Date;
 	}
+
+
+
+	public Calendar getCalendar() {
+		return calendar;
+	}
+
+
+
+	public void setCalendar(Calendar calendar) {
+		this.calendar = calendar;
+	}
+
+
+
+	public Long getEventId() {
+		return eventId;
+	}
+
+
+
+	public void setEventId(Long eventId) {
+		this.eventId = eventId;
+	}
+	
+	
+
+
+
+
+	@Override
+	public String toString() {
+		return "Event [id=" + id + ", name=" + name + ", identifier=" + identifier + ", eventId=" + eventId
+				+ ", description=" + description + ", start_Date=" + start_Date + ", end_Date=" + end_Date
+				+ ", calendar=" + calendar + "]";
+	}
+	
+	
 	
 	
 	

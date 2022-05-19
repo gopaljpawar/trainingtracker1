@@ -4,8 +4,12 @@ import com.hcl.calendar_management.domain.Event;
 
 public interface EventService {
 	
-	void save(Event event);
-	void list(Long id);
+	Event save(Event event, String Id);
+	Iterable<Event> list();
+	Event findByNameIdentifier(String Id, String name);
 	void delete(Long id);
+	
+	
+	
 
 }

@@ -7,10 +7,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
@@ -25,33 +27,40 @@ public class Calendar {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private Long id;
-	@Column(name="tring_Batch")
-	@NotBlank
-	private String traningBatch;
 	
-	private String tringBatchIdentifier;
+	
+	
+	private Long ScheduleId;
+	@Column(name="calendar_name")
+	private String identifier;
 	private Date start_Date;
 	private Date end_Date;
 	@OneToMany(cascade = CascadeType.ALL,mappedBy = "calendar")
-	
 	List<Event> event=  new ArrayList<>();
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "calendar")
-    
-    List<Meeting> meeting=new ArrayList<>();
 	
+	@OneToMany(cascade = CascadeType.ALL,mappedBy = "calender")
+	List<Meeting> meeting=new ArrayList<>();
+		
 	
+	//@OneToOne(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
+	// @JoinColumn(name = "schedule_id", referencedColumnName = "id")
+	/*
+	private List<Schedule> schedule=new ArrayList<>();
     public Calendar() {
 		super();
 	}
 	
-
-	public Calendar(@NotBlank String traningBatch, String tringBatchIdentifier, Date start_Date, Date end_Date) {
+	public Calendar(Long id, Long scheduleId, String identifier, Date start_Date, Date end_Date, List<Event> event,
+			List<Schedule> schedule) {
 		super();
-		this.traningBatch = traningBatch;
-		this.tringBatchIdentifier = tringBatchIdentifier;
+		this.id = id;
+		ScheduleId = scheduleId;
+		this.identifier = identifier;
 		this.start_Date = start_Date;
 		this.end_Date = end_Date;
-	}
+		this.event = event;
+		this.schedule = schedule;
+	}*/
 
 	public Long getId() {
 		return id;
@@ -61,13 +70,7 @@ public class Calendar {
 		this.id = id;
 	}
 
-	public String getTraningBatch() {
-		return traningBatch;
-	}
-
-	public void setTraningBatch(String traningBatch) {
-		this.traningBatch = traningBatch;
-	}
+	
 
 	public Date getStart_Date() {
 		return start_Date;
@@ -93,6 +96,32 @@ public class Calendar {
 		this.event = event;
 	}
 
+	
+	public String getIdentifier() {
+		return identifier;
+	}
+
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
+	}
+
+
+
+
+
+	public Long getScheduleId() {
+		return ScheduleId;
+	}
+
+
+
+
+
+	public void setScheduleId(Long scheduleId) {
+		ScheduleId = scheduleId;
+	}
+	
+
 	public List<Meeting> getMeeting() {
 		return meeting;
 	}
@@ -101,22 +130,41 @@ public class Calendar {
 		this.meeting = meeting;
 	}
 
-	public String getTringBatchIdentifier() {
-		return tringBatchIdentifier;
+
+/*
+	public List<Schedule> getSchedule() {
+		return schedule;
 	}
 
-	public void setTringBatchIdentifier(String tringBatchIdentifier) {
-		this.tringBatchIdentifier = tringBatchIdentifier;
+
+
+
+	public void setSchedule(List<Schedule> schedule) {
+		this.schedule = schedule;
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	@Override
 	public String toString() {
-		return "Calendar [id=" + id + ", traningBatch=" + traningBatch + ", tringBatchIdentifier="
-				+ tringBatchIdentifier + ", start_Date=" + start_Date + ", end_Date=" + end_Date + ", event=" + event
-				+ ", meeting=" + meeting + "]";
+		return "Calendar [id=" + id + ", ScheduleId=" + ScheduleId + ", identifier=" + identifier + ", start_Date="
+				+ start_Date + ", end_Date=" + end_Date + ", event=" + event + ", schedule=" + schedule + "]";
 	}
-	
-	
-	
-	
+	*/
+
+
+
+
 }

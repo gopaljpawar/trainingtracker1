@@ -5,26 +5,32 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Meeting {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long meetingId;
 	private String name;
 	private String description;
-	private String tringBatchIdentifier;
+	private String identifier;
 	private Date meetingDate;
-	@ManyToOne(cascade = CascadeType.REFRESH)
-	@JoinColumn(name = "calendar_id", referencedColumnName = "id")
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REFRESH)
+	@JoinColumn(name = "calendar_id")
+	@JsonIgnore
 	private Calendar calendar;
-	@JsonFormat()
+	//@JsonFormat()
 	//private Time meetingtime;
 	private String meetingStartTime;
 	private String meetingEndingTime;
@@ -41,7 +47,7 @@ public class Meeting {
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.tringBatchIdentifier = tringBatchIdentifier;
+		this.identifier = identifier;
 		this.meetingDate = meetingDate;
 		this.meetingStartTime = meetingStartTime;
 		this.meetingEndingTime = meetingEndingTime;
@@ -72,12 +78,12 @@ public class Meeting {
 		this.description = description;
 	}
 
-	public String getTringBatchIdentifier() {
-		return tringBatchIdentifier;
+	public String getIdentifier() {
+		return identifier;
 	}
 
-	public void setTringBatchIdentifier(String tringBatchIdentifier) {
-		this.tringBatchIdentifier = tringBatchIdentifier;
+	public void setIdentifier(String tringBatchIdentifier) {
+		this.identifier = identifier;
 	}
 
 	public Date getMeetingDate() {
@@ -103,6 +109,31 @@ public class Meeting {
 	public void setMeetingEndingTime(String meetingEndingTime) {
 		this.meetingEndingTime = meetingEndingTime;
 	}
+
+
+	
+
+	public Long getMeetingId() {
+		return meetingId;
+	}
+
+
+	public void setMeetingId(Long meetingId) {
+		this.meetingId = meetingId;
+	}
+	
+
+
+	
+
+	@Override
+	public String toString() {
+		return "Meeting [id=" + id + ", meetingId=" + meetingId + ", name=" + name + ", description=" + description
+				+ ", identifier=" + identifier + ", meetingDate=" + meetingDate 
+				+ ", meetingStartTime=" + meetingStartTime + ", meetingEndingTime=" + meetingEndingTime + "]";
+	}
+	
+	
 
 //	public Time getMeetingtime() {
 //		return meetingtime;
