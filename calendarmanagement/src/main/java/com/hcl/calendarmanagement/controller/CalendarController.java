@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.hcl.calendarmanagement.domain.Calendar;
+import com.hcl.calendarmanagement.domain.Schedule;
 import com.hcl.calendarmanagement.service.CalendarService;
 import com.hcl.calendarmanagement.serviceimpl.MapValidationErrorService;
 
@@ -25,15 +27,19 @@ import com.hcl.calendarmanagement.serviceimpl.MapValidationErrorService;
 public class CalendarController {
 	@Autowired
 	private CalendarService calendarService;
+	@Autowired
+	private RestTemplate restTemplate;
 	
 	@Autowired
 	private MapValidationErrorService mves;
-	@PostMapping("/save")
-	public ResponseEntity<?> createCalendar(@Valid @RequestBody Calendar calendar , BindingResult result){
+	@PostMapping("/save/{schid}")
+	public ResponseEntity<?> createCalendar(@Valid @RequestBody Calendar calendar , BindingResult result,@PathVariable Long schid ){
 		ResponseEntity<?> errorMap=mves.mapValidationError(result);
 		if(errorMap!=null) {
 			return errorMap;
 		}
+		Schedule schedule=restTemplate.getForObject("http//schedule_management/api/schedules"+schid, Schedule.class);
+		calendar.setSchedule(schedule);
 		Calendar calendars=calendarService.save(calendar);
 		return new ResponseEntity<Calendar>(calendars,HttpStatus.CREATED);
 	}
@@ -46,9 +52,12 @@ public class CalendarController {
 		calendarService.deleteCalendar(id);
 		return new ResponseEntity<String>("calendar has been deleted ",HttpStatus.OK);
 	}
-	@GetMapping("/{id}")
+	@GetMapping("/{id}/{schid}")
 	public ResponseEntity<?> findaCalendar(@PathVariable String id){
+		
+		
 		Calendar calendar=calendarService.findCalendar(id);
+		
 		return new ResponseEntity<Calendar>(calendar,HttpStatus.OK);
 	}
 

@@ -6,10 +6,13 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,7 +29,9 @@ public class Calendar {
 	String meeting;
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "calendar")	
     List<Event> events=  new ArrayList<>();
-    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY,cascade=CascadeType.ALL)
+	 @JoinColumn(name = "schedule_id", referencedColumnName = "id")
+    private Schedule schedule;
 	public Calendar() {
 		super();
 	}
@@ -82,6 +87,13 @@ public class Calendar {
 	public void setEvents(List<Event> events) {
 		this.events = events;
 	}
+	public Schedule getSchedule() {
+		return schedule;
+	}
+	public void setSchedule(Schedule schedule) {
+		this.schedule = schedule;
+	}
+	
 	
 	
 	
