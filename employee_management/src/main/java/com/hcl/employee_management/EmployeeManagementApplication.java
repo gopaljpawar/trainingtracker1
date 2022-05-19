@@ -1,25 +1,21 @@
-package com.hcl.training_management;
+package com.hcl.employee_management;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
-public class TrainingManagementApplication {
+public class EmployeeManagementApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TrainingManagementApplication.class, args);
+		SpringApplication.run(EmployeeManagementApplication.class, args);
 	}
+	
 	
 	@Bean
-	@LoadBalanced
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
-		
 	}
-	
 
 }
