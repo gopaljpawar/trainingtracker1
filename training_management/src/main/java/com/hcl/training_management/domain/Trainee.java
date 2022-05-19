@@ -16,21 +16,21 @@ public class Trainee {
 @Id
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 private Long id;
-@NotBlank(message="name required")
+//@NotBlank(message="name required")
 private String name;
-@NotBlank(message="type required")
+//@NotBlank(message="type required")
 private String type;
-@NotBlank(message="status required")
+//@NotBlank(message="status required")
 private String status;
 private String phnno;
 private String email;
 // @NotBlank(message="trainer name required")
 private String trainername;
-@NotBlank(message="coursename required")
-@Column(updatable=false,unique=true)
+//@NotBlank(message="coursename required")
+//@Column(updatable=false,unique=true)
 private String coursename;
 
-private Long Duration;
+private String Duration;
 @JsonFormat(pattern="yyyy-mm-dd")
 private Date startdate;
 @JsonFormat(pattern="yyyy-mm-dd")
@@ -107,10 +107,10 @@ return coursename;
 public void setCoursename(String coursename) {
 this.coursename = coursename;
 }
-public Long getDuration() {
+public String getDuration() {
 	return Duration;
 }
-public void setDuration(Long duration) {
+public void setDuration(String duration) {
 	Duration = duration;
 }
 
