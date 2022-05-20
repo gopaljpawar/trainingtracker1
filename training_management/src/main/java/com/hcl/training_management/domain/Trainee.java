@@ -30,7 +30,28 @@ private String trainername;
 //@Column(updatable=false,unique=true)
 private String coursename;
 
-private String Duration;
+private Long hours;
+private Float rating;
+private Double budget;
+public Long getHours() {
+	return hours;
+}
+public void setHours(Long hours) {
+	this.hours = hours;
+}
+public Double getBudget() {
+	return budget;
+}
+public void setBudget(Double budget) {
+	this.budget = budget;
+}
+public Float getRating() {
+	return rating;
+}
+public void setRating(Float rating) {
+	this.rating = rating;
+}
+
 @JsonFormat(pattern="yyyy-mm-dd")
 private Date startdate;
 @JsonFormat(pattern="yyyy-mm-dd")
@@ -107,11 +128,6 @@ return coursename;
 public void setCoursename(String coursename) {
 this.coursename = coursename;
 }
-public String getDuration() {
-	return Duration;
-}
-public void setDuration(String duration) {
-	Duration = duration;
-}
+
 
 }
