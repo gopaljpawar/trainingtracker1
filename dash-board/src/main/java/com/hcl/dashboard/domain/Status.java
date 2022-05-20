@@ -5,13 +5,7 @@ public class Status {
 	private Long id;
 	private String trainingName;
 	private String status;
-	private String type;
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
+	
 	public Status() {
 		super();
 	}
